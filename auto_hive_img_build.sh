@@ -24,5 +24,3 @@ if [ "${remote_hash}" != ${local_hash} ]; then
 else
     echo "Latest master commit of remote ($remote_hash) == latest master commit of local ($local_hash), doing nothing. "
 fi
-
-
