@@ -15,7 +15,8 @@ remote_hash=$(git ls-remote -q | grep master | awk '{print $1}' | cut -c 1-7)
 
 # Hash of the latest image tag on quay.io (using quay's api)
 # shellcheck disable=SC2154
-quay_latest=$(curl -s -X GET https://quay.io/api/v1/repository/$quay_username/$quay_repo/tag/ | jq -rs "sort_by(.tags[].last_modified) | .[0].tags[0].name")
+# quay_latest=$(curl -s -X GET https://quay.io/api/v1/repository/$quay_username/$quay_repo/tag/ | jq -rs "sort_by(.tags[].last_modified) | .[0].tags[0].name")
+quay_latest=$(curl -s -X GET https://quay.io/api/v1/repository/$quay_username/$quay_repo/tag/ | jq -rs '.[].tags | map(select(.expiration | not)) | sort_by(.last_modified) | .[0].name')
 
 # shellcheck disable=SC2086
 if [ "${remote_hash}" != ${quay_latest} ]; then
