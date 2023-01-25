@@ -18,7 +18,8 @@ if [ "${remote_hash}" != ${local_hash} ]; then
     git pull
 
     echo "Building new Hive image:"
-    podman login quay.io --username USERNAME --password PASSWORD
+    # shellcheck disable=SC2154
+    podman login quay.io --username ${quay_username} --password ${quay_password}
     IMG=quay.io/fxierh/hive:${remote_hash} make buildah-dev-push
 else
     echo "Latest master commit of remote ($remote_hash) == latest master commit of local ($local_hash), doing nothing. "
