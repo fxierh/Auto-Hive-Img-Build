@@ -1,5 +1,9 @@
 # Auto-Hive-Img-Build
 
+Prerequisites:
+* Golang
+* jq (command line utility)
+
 Usage: 
 1. Copy auto_hive_img_build.sh to server
 2. Install a Cron job by adding the following line to the Crontab:
