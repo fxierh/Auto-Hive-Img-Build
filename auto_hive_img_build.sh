@@ -20,8 +20,7 @@ quay_latest=$(curl -s -X GET https://quay.io/api/v1/repository/"$quay_username"/
 
 # shellcheck disable=SC2086
 if [ "${local_hash}" != ${quay_latest} ]; then
-    echo "Latest master commit ($local_hash) != latest image tag on quay.io ($quay_latest),
-        building & pushing new Hive image:"
+    echo "Latest master commit ($local_hash) != latest image tag on quay.io ($quay_latest), building & pushing new Hive image:"
 
     # shellcheck disable=SC2154
     podman login quay.io --username "${quay_username}" --password "${quay_password}"
